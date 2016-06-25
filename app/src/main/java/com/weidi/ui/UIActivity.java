@@ -1,9 +1,7 @@
 package com.weidi.ui;
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -29,6 +27,7 @@ public class UIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 解释注解
         InjectUtils.inject(this, null);
     }
 
@@ -54,6 +53,7 @@ public class UIActivity extends AppCompatActivity {
     private static class WPopupWindow extends PopupWindow {
 
         private Activity mActivity;
+
         public WPopupWindow(Activity activity) {
             super(activity);
             mActivity = activity;
@@ -63,11 +63,15 @@ public class UIActivity extends AppCompatActivity {
             setContentView(view_pw);
             setFocusable(true);
             setOutsideTouchable(true);
+            // 设置动画
             setAnimationStyle(R.style.PopupWinowAnim);
             setBackgroundDrawable(new ColorDrawable(Color.GREEN));
         }
 
-        public void dismiss(){
+        /**
+         * PopupWindow消失时会回调该方法
+         */
+        public void dismiss() {
             super.dismiss();
             // 让Activity背景恢复
             WindowManager.LayoutParams params = mActivity.getWindow().getAttributes();
