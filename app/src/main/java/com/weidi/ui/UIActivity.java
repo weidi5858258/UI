@@ -51,7 +51,6 @@ public class UIActivity extends AppCompatActivity {
         }
     }
 
-    // 不能定义属性，不然显示不了
     private static class WPopupWindow extends PopupWindow {
 
         private Activity mActivity;

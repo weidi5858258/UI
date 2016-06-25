@@ -1,10 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 从屏幕底部退出 -->
+<?xml version="1.0" encoding="utf-8"?><!-- 从屏幕底部退出 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_focused="true" android:drawable="@color/color_fff57f17"/>
-    <item android:state_pressed="true" android:drawable="@color/color_fff57f17"/>
-    <item android:state_selected="true" android:drawable="@color/color_fff57f17"/>
+    <item android:drawable="@color/color_fff57f17" android:state_focused="true" />
+    <item android:drawable="@color/color_fff57f17" android:state_pressed="true" />
+    <item android:drawable="@color/color_fff57f17" android:state_selected="true" />
     <!-- 正常情况下显示的背景颜色 -->
-    <item android:drawable="@color/color_ffd8d8d8"/>
+    <item android:drawable="@color/color_ffd8d8d8" />
 </selector>
+
+    <!--
+    <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+        &lt;!&ndash; 默认时的背景图片&ndash;&gt;
+        <item android:drawable="@drawable/pic1" />
+        &lt;!&ndash; 没有焦点时的背景图片 &ndash;&gt;
+        <item android:state_window_focused="false" android:drawable="@drawable/pic1" />
+        &lt;!&ndash; 非触摸模式下获得焦点并单击时的背景图片 &ndash;&gt;
+        <item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/pic2" />
+        &lt;!&ndash; 触摸模式下单击时的背景图片&ndash;&gt;
+        <item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/pic3" />
+        &lt;!&ndash;获得焦点时的图片背景&ndash;&gt;
+        <item android:state_focused="true" android:drawable="@drawable/pic4" />
+        &lt;!&ndash;选中时的图片背景&ndash;&gt;
+        <item android:state_selected="true" android:drawable="@drawable/pic5" />
+
+    </selector>
+    -->
