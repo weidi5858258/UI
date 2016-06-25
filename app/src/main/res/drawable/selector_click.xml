@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 从屏幕底部退出 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="true" android:drawable="@color/color_fff57f17"/>
+    <item android:state_pressed="true" android:drawable="@color/color_fff57f17"/>
+    <item android:state_selected="true" android:drawable="@color/color_fff57f17"/>
+    <!-- 正常情况下显示的背景颜色 -->
+    <item android:drawable="@color/color_ffd8d8d8"/>
+</selector>
