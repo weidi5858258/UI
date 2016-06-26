@@ -1,5 +1,7 @@
 package com.weidi.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
@@ -21,6 +23,8 @@ import com.weidi.injectview.InjectOnClick;
 import com.weidi.injectview.InjectUtils;
 import com.weidi.injectview.InjectView;
 
+import java.util.ArrayList;
+
 @InjectLayout(R.layout.activity_ui)
 public class UIActivity extends AppCompatActivity {
 
@@ -33,10 +37,9 @@ public class UIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InjectUtils.inject(this, null);
-
     }
 
-    @InjectOnClick({R.id.tv_popupwindow})
+    @InjectOnClick({R.id.tv_popupwindow, R.id.iv_anim})
     private void onClick(final View view) {
         switch (view.getId()) {
             case R.id.tv_popupwindow:
@@ -52,22 +55,62 @@ public class UIActivity extends AppCompatActivity {
                         0,
                         0);
                 break;
+            case R.id.iv_anim:
+                propertyAnim();
+                break;
         }
     }
 
-    private void testAnim(){
+    /**
+     * 关于属性动画
+     */
+    private void propertyAnim() {
         // 平移
-        ObjectAnimator animator_translation = ObjectAnimator.ofFloat(animTestIV, "translationX", 0.0f, 350.0f, 0f);
-        animator_translation.setDuration(300).start();
+        /**
+         * 下面两种方式效果等价
+         * ObjectAnimator.ofFloat(animTestIV, "translationX", 350.0f);
+         * ObjectAnimator.ofFloat(animTestIV, "translationX", 0.0f, 350.0f);
+         * 最后一个参数表示的意思：又回到0.0f这个位置
+         * ObjectAnimator.ofFloat(animTestIV, "translationX", 0.0f, 350.0f, 0.0f);
+         *
+         * 通过下面的方式添加的动画称为现有的动画
+         * play(Animator anim)
+         * 通过下面的方式添加的动画称为传入的动画，调用上面的方法后才能调用下面的方法
+         * with(Animator anim)      将现有动画和传入的动画同时执行
+         * before(Animator anim)    将现有动画插入到传入的动画之前执行
+         * after(Animator anim)     将现有动画插入到传入的动画之后执行
+         * after(long delay)        将现有动画延迟指定毫秒后执行
+         */
+        ObjectAnimator animator_translation = ObjectAnimator.ofFloat(animTestIV, "translationX", 0.0f, 350.0f, 0.0f);
+//        animator_translation.setDuration(3000).start();
         // 缩放
-        ObjectAnimator animator_scale = ObjectAnimator.ofFloat(animTestIV, "scaleX", 1.0f, 1.5f);
-        animator_scale.setDuration(3000).start();
+        ObjectAnimator animator_scale = ObjectAnimator.ofFloat(animTestIV, "scaleX", 1.0f, 2.5f, 1.0f);
+//        animator_scale.setDuration(3000).start();
         // 旋转
-        ObjectAnimator animator_rotation = ObjectAnimator.ofFloat(animTestIV, "rotationX", 0.0f, 90.0f,0.0F);
-        animator_rotation.setDuration(3000).start();
+        ObjectAnimator animator_rotation = ObjectAnimator.ofFloat(animTestIV, "rotationX", 0.0f, 360.0f);
+//        animator_rotation.setDuration(3000).start();
         // 透明度
-        ObjectAnimator animator_alpha = ObjectAnimator.ofFloat(animTestIV, "alpha", 1.0f, 0.3f, 1.0F);
-        animator_alpha.setDuration(3000).start();
+        ObjectAnimator animator_alpha = ObjectAnimator.ofFloat(animTestIV, "alpha", 1.0f, 0.3f, 1.0f);
+//        animator_alpha.setDuration(3000).start();
+
+        AnimatorSet set = new AnimatorSet();
+        // 所有动画同时执行
+        set.setDuration(5000)
+                .play(animator_translation)
+                .with(animator_alpha)// animator_translation与animator_alpha同时执行
+                .before(animator_scale)// 最后执行
+                .after(animator_rotation);// 最先执行
+
+        // 依次执行动画
+//        ArrayList<Animator> list = new ArrayList<>();
+//        list.add(animator_translation);
+//        list.add(animator_scale);
+//        list.add(animator_rotation);
+//        list.add(animator_alpha);
+//        set.playSequentially(list);
+//        set.setDuration(5000);
+
+        set.start();
     }
 
     private static class WPopupWindow extends PopupWindow {
