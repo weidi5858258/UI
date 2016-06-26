@@ -28,6 +28,18 @@
                 app:layout_constraintLeft_toLeftOf="@+id/activity_ui"
                 app:layout_constraintRight_toRightOf="@+id/activity_ui"
                 app:layout_constraintTop_toTopOf="@+id/activity_ui" />
+
+            <ImageView
+                android:id="@+id/iv_anim"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@mipmap/ic_launcher"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_ui"
+                app:layout_constraintLeft_toLeftOf="@+id/activity_ui"
+                app:layout_constraintRight_toRightOf="@+id/activity_ui"
+                app:layout_constraintTop_toTopOf="@+id/activity_ui" />
         </LinearLayout>
     </ScrollView>
 

@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -25,11 +26,14 @@ public class UIActivity extends AppCompatActivity {
 
     @InjectView(R.id.tv_popupwindow)
     private TextView popupWindowTV;
+    @InjectView(R.id.iv_anim)
+    private ImageView animTestIV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InjectUtils.inject(this, null);
+
     }
 
     @InjectOnClick({R.id.tv_popupwindow})
@@ -49,6 +53,21 @@ public class UIActivity extends AppCompatActivity {
                         0);
                 break;
         }
+    }
+
+    private void testAnim(){
+        // 平移
+        ObjectAnimator animator_translation = ObjectAnimator.ofFloat(animTestIV, "translationX", 0.0f, 350.0f, 0f);
+        animator_translation.setDuration(300).start();
+        // 缩放
+        ObjectAnimator animator_scale = ObjectAnimator.ofFloat(animTestIV, "scaleX", 1.0f, 1.5f);
+        animator_scale.setDuration(3000).start();
+        // 旋转
+        ObjectAnimator animator_rotation = ObjectAnimator.ofFloat(animTestIV, "rotationX", 0.0f, 90.0f,0.0F);
+        animator_rotation.setDuration(3000).start();
+        // 透明度
+        ObjectAnimator animator_alpha = ObjectAnimator.ofFloat(animTestIV, "alpha", 1.0f, 0.3f, 1.0F);
+        animator_alpha.setDuration(3000).start();
     }
 
     private static class WPopupWindow extends PopupWindow {
