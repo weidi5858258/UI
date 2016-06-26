@@ -43,7 +43,7 @@ public class UIActivity extends AppCompatActivity {
     private void onClick(final View view) {
         switch (view.getId()) {
             case R.id.tv_popupwindow:
-                // 让后面的Acticity背景变暗
+                // 效果：popupWindow从屏幕底部进入，然后让后面的Acticity背景变暗
                 WindowManager.LayoutParams params = getWindow().getAttributes();
                 params.alpha = 0.3f;
                 getWindow().setAttributes(params);
