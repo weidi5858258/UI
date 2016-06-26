@@ -1,4 +1,4 @@
-package com.weidi.ui;
+﻿package com.weidi.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -69,6 +69,9 @@ public class UIActivity extends AppCompatActivity {
         }
     }
 
+
+
+    // 帧动画
     private void frameAnim() {
 //        frameAnimTestIV.setBackgroundResource(R.drawable.frameanimation);
         AnimationDrawable drawable = (AnimationDrawable) frameAnimTestIV.getBackground();
